@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VARSHITAP SAREES - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../src/css/admin.css">
+</head>
+<body>
+    <div id="authContainer" style="display: none;">
+        <div class="login-box">
+            <h1>VARSHITAP SAREES®</h1>
+            <h2>Admin Panel</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div id="loginError" style="color: red; margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <div id="adminContainer" style="display: none;">
+        <nav class="admin-nav">
+            <div class="logo">VARSHITAP SAREES® Admin</div>
+            <div class="user-info">
+                <span id="userName">Admin</span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <div class="admin-layout">
+            <aside class="sidebar">
+                <ul>
+                    <li><a href="#dashboard" class="menu-item active">Dashboard</a></li>
+                    <li><a href="#products" class="menu-item">All Products</a></li>
+                    <li><a href="#add-product" class="menu-item">Add New Product</a></li>
+                    <li><a href="#settings" class="menu-item">Settings</a></li>
+                </ul>
+            </aside>
+
+            <main class="admin-content">
+                <!-- Dashboard -->
+                <div id="dashboard" class="admin-page active">
+                    <h1>Dashboard</h1>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <i class="fas fa-box"></i>
+                            <div>
+                                <h3>Total Products</h3>
+                                <p id="totalProducts">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-crown"></i>
+                            <div>
+                                <h3>Designer Sarees</h3>
+                                <p id="designerCount">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-tshirt"></i>
+                            <div>
+                                <h3>Daily Wear</h3>
+                                <p id="dailyWearCount">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Products -->
+                <div id="products" class="admin-page">
+                    <h1>All Products</h1>
+                    <div class="search-bar">
+                        <input type="text" id="productSearch" placeholder="Search products...">
+                    </div>
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add Product -->
+                <div id="add-product" class="admin-page">
+                    <h1>Add New Product</h1>
+                    <form id="productForm" class="product-form">
+                        <div class="form-group">
+                            <label>Product Name *</label>
+                            <input type="text" id="prodName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="prodCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Designer Saree Range">Designer Saree Range</option>
+                                <option value="Daily Wear Collection">Daily Wear Collection</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description *</label>
+                            <textarea id="prodDescription" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Price (Optional)</label>
+                            <input type="number" id="prodPrice" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Images (Up to 5)</label>
+                            <input type="file" id="prodImages" multiple accept="image/*">
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="prodFeatured">
+                                Mark as Featured
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="prodInStock" checked>
+                                In Stock
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save & Publish</button>
+                    </form>
+                </div>
+
+                <!-- Settings -->
+                <div id="settings" class="admin-page">
+                    <h1>Settings</h1>
+                    <div class="settings-section">
+                        <h2>Change Password</h2>
+                        <form id="passwordForm">
+                            <input type="password" placeholder="Current Password" required>
+                            <input type="password" placeholder="New Password" required>
+                            <input type="password" placeholder="Confirm Password" required>
+                            <button type="submit" class="btn btn-primary">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+    <script src="../src/js/firebase-config.js"></script>
+    <script src="../src/js/admin.js"></script>
+</body>
+</html>
