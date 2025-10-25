@@ -1,0 +1,17 @@
+{
+  "name": "varshitap-sarees",
+  "version": "1.0.0",
+  "description": "VARSHITAP SAREES - Official Registered Trademark PWA",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p 8080 -c-1",
+    "deploy": "firebase deploy",
+    "build": "echo 'Build process (if using build tools)'"
+  },
+  "keywords": ["sarees", "pwa", "ecommerce"],
+  "author": "Hitesh Singhvi",
+  "license": "MIT",
+  "devDependencies": {
+    "firebase-tools": "^11.0.0"
+  }
+}
